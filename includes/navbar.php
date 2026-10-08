@@ -53,6 +53,18 @@ if (!isset($currentSlug)) {
             <li><a class="dropdown-item <?= $currentSlug === 'confirmshaming' ? 'active' : '' ?>" href="<?= $basePath ?>tests/confirmshaming.php">11. Confirmshaming</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-info" href="#" id="suiteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-collection-fill me-1"></i> Testbed Suite
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="suiteDropdown">
+            <li class="dropdown-header text-uppercase small fw-bold text-white-50">Testbed Family Ecosystem</li>
+            <li><a class="dropdown-item" href="https://accessibility-testbed.andrewwestley.co.uk" target="_blank" rel="noopener"><i class="bi bi-universal-access text-primary me-2"></i>Accessibility Testbed (WCAG 2.2)</a></li>
+            <li><a class="dropdown-item" href="https://coga-testbed.andrewwestley.co.uk" target="_blank" rel="noopener"><i class="bi bi-person-fill-check text-info me-2"></i>COGA Cognitive Testbed</a></li>
+            <li><a class="dropdown-item" href="https://content-testbed.andrewwestley.co.uk" target="_blank" rel="noopener"><i class="bi bi-file-earmark-text-fill text-warning me-2"></i>Content &amp; Readability Testbed</a></li>
+            <li><a class="dropdown-item active" href="<?= $basePath ?>index.php"><i class="bi bi-speedometer2 text-danger me-2"></i>UX &amp; Heuristics Testbed</a></li>
+          </ul>
+        </li>
       </ul>
       
       <div class="d-flex align-items-center gap-2">
