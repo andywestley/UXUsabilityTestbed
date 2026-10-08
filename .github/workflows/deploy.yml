@@ -18,13 +18,13 @@ jobs:
       - name: Deploy via SSH to Plesk Webroot
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          host: ${{ secrets.SSH_HOST || secrets.SERVER_HOST }}
+          username: ${{ secrets.SSH_USER || secrets.SSH_USERNAME || secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
             set -e
-            DEPLOY_PATH="${{ secrets.PLESK_DEPLOY_PATH || '/var/www/vhosts/example.com/httpdocs' }}"
+            DEPLOY_PATH="${{ secrets.SSH_TARGET_DIR || secrets.SERVER_TARGET_DIR || secrets.PLESK_DEPLOY_PATH || '/var/www/vhosts/example.com/httpdocs' }}"
             echo "Deploying UX Usability Testbed to $DEPLOY_PATH..."
             
             mkdir -p $DEPLOY_PATH
