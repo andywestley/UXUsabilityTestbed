@@ -1,0 +1,48 @@
+name: Deploy UX Usability Testbed to Plesk VPS
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Plesk Linux VPS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH to Plesk Webroot
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            set -e
+            DEPLOY_PATH="${{ secrets.PLESK_DEPLOY_PATH || '/var/www/vhosts/example.com/httpdocs' }}"
+            echo "Deploying UX Usability Testbed to $DEPLOY_PATH..."
+            
+            mkdir -p $DEPLOY_PATH
+            cd $DEPLOY_PATH
+            
+            if [ -d ".git" ]; then
+              git fetch origin main
+              git reset --hard origin/main
+            else
+              echo "Initializing Git repository in Plesk webroot..."
+              git init
+              git remote add origin ${{ github.server_url }}/${{ github.repository }}.git || true
+              git fetch origin main
+              git reset --hard origin/main
+            fi
+            
+            # Set appropriate file permissions for Apache / Plesk
+            find . -type d -exec chmod 755 {} +
+            find . -type f -exec chmod 644 {} +
+            
+            echo "Deployment to Plesk VPS completed successfully!"
