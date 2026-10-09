@@ -1,4 +1,0 @@
-# Set index.php as default
-DirectoryIndex index.php index.html
-Options -Indexes
-AddDefaultCharset UTF-8
