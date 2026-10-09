@@ -1,0 +1,8 @@
+# Set index.php as the default directory index
+DirectoryIndex index.php index.html
+
+# Prevent directory browsing
+Options -Indexes
+
+# UTF-8 encoding
+AddDefaultCharset UTF-8
