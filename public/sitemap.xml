@@ -13,6 +13,12 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://uxusability-testbed.andrewwestley.co.uk/cookie_policy.php</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://uxusability-testbed.andrewwestley.co.uk/tests/inputmode-missing.php</loc>
     <lastmod>2026-10-09</lastmod>
     <changefreq>monthly</changefreq>

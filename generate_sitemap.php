@@ -25,11 +25,11 @@ $url->addChild('changefreq', 'weekly');
 $url->addChild('priority', '1.0');
 
 // Cookie Policy
- = ->addChild('url');
-->addChild('loc',  . '/cookie_policy.php');
-->addChild('lastmod', );
-->addChild('changefreq', 'monthly');
-->addChild('priority', '0.5');
+$url = $xml->addChild('url');
+$url->addChild('loc', $domain . '/cookie_policy.php');
+$url->addChild('lastmod', $lastmod);
+$url->addChild('changefreq', 'monthly');
+$url->addChild('priority', '0.5');
 
 // All 11 dedicated test pages
 foreach ($tests as $slug => $test) {
@@ -53,4 +53,4 @@ if (is_dir(__DIR__ . '/public')) {
     file_put_contents(__DIR__ . '/public/sitemap.xml', $xmlContent);
 }
 
-echo "Successfully generated sitemap.xml (Root & Public) with " . (count($tests) + 2) . " URLs!\n";
+echo "Successfully generated sitemap.xml (Root & Public) with " . (count($tests) + 3) . " URLs!\n";
