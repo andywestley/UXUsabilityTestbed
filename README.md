@@ -80,7 +80,7 @@ This repository is part of a unified family of 4 specialized compliance testbeds
 * 🌐 **Accessibility Testbed:** [accessibility-testbed.andrewwestley.co.uk](https://accessibility-testbed.andrewwestley.co.uk) (WCAG 2.1/2.2 Criteria)
 * 🧠 **COGA Testbed:** [coga-testbed.andrewwestley.co.uk](https://coga-testbed.andrewwestley.co.uk) (W3C Cognitive Accessibility Guidelines 1–8)
 * 📝 **Content Testbed:** [content-testbed.andrewwestley.co.uk](https://content-testbed.andrewwestley.co.uk) (NLP Readability, Tone & Inclusivity)
-* ⚡ **UX Usability Testbed:** [ux-testbed.andrewwestley.co.uk](https://ux-testbed.andrewwestley.co.uk) (Usability Heuristics & Ethical Design)
+* ⚡ **UX Usability Testbed:** [uxusability-testbed.andrewwestley.co.uk](https://uxusability-testbed.andrewwestley.co.uk) (Usability Heuristics & Ethical Design)
 
 ---
 
