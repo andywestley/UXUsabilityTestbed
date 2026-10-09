@@ -23,6 +23,10 @@ if (!isset($basePath)) {
             <i class="bi bi-grid-fill me-1"></i> Catalog Matrix
           </a>
           <span class="text-white-50">&bull;</span>
+          <a href="<?= $basePath ?>cookie_policy.php" class="text-white-50 text-decoration-none hover-white">
+            <i class="bi bi-shield-check me-1"></i> Cookie Policy
+          </a>
+          <span class="text-white-50">&bull;</span>
           <a href="<?= $basePath ?>tests/inputmode-missing.php" class="text-info text-decoration-none">
             <i class="bi bi-arrow-repeat me-1"></i> Crawler Route
           </a>
@@ -36,6 +40,11 @@ if (!isset($basePath)) {
 
 <!-- Bootstrap 5 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Silktide Consent Manager JS Placeholder -->
+<?php if (file_exists(__DIR__ . '/../assets/js/silktide-consent-manager.js')): ?>
+<script src="<?= $basePath ?>assets/js/silktide-consent-manager.js"></script>
+<?php endif; ?>
 
 <!-- Custom Testbed Interactivity JS -->
 <script src="<?= $basePath ?>assets/js/main.js"></script>

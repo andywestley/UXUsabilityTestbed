@@ -24,6 +24,13 @@ $url->addChild('lastmod', $lastmod);
 $url->addChild('changefreq', 'weekly');
 $url->addChild('priority', '1.0');
 
+// Cookie Policy
+ = ->addChild('url');
+->addChild('loc',  . '/cookie_policy.php');
+->addChild('lastmod', );
+->addChild('changefreq', 'monthly');
+->addChild('priority', '0.5');
+
 // All 11 dedicated test pages
 foreach ($tests as $slug => $test) {
     $url = $xml->addChild('url');
