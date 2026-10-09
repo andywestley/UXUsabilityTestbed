@@ -1,3 +1,6 @@
+> [!NOTE]
+> **This standalone repository is archived and now actively maintained as part of the unified [audit-testbeds](https://github.com/andywestley/audit-testbeds) monorepo.**
+
 # UX & Usability Heuristics Benchmark Testbed (`ux-testbed`)
 
 A standalone PHP/HTML5/Bootstrap web application designed specifically to benchmark and trigger every rule in the **UX & Usability Heuristics Engine (`UxScanner`)**.
