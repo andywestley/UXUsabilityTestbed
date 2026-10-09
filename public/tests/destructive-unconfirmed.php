@@ -29,7 +29,7 @@ require_once __DIR__ . '/../includes/navbar.php';
 
           <div class="card-body d-flex flex-column">
             <p class="text-muted small mb-3">
-              This destructive button executes an irreversible account purge <strong>immediately on a single click</strong>. There is no confirmation dialog, no friction gate, and no undo buffer, violating NN/g Heuristic #5 (Error Prevention).
+              This destructive button executes an irreversible account purge <strong>immediately on a single click</strong>. There is no confirmation safeguard, no modal friction gate, and no undo buffer, violating NN/g Heuristic #5 (Error Prevention).
             </p>
 
             <div class="sandbox-canvas mb-4 flex-grow-0">
@@ -38,18 +38,16 @@ require_once __DIR__ . '/../includes/navbar.php';
                 <span class="badge bg-danger-subtle text-danger">Zero Confirmation</span>
               </div>
 
-              <!-- FAILING 1-CLICK DESTRUCTIVE BUTTON -->
+              <!-- FAILING 1-CLICK DESTRUCTIVE BUTTON (Raw button with exact label 'Delete Account' and no confirmation) -->
               <div class="p-3 bg-white rounded border border-danger-subtle mb-3">
                 <h6 class="fw-bold text-danger mb-1"><i class="bi bi-trash3-fill me-1"></i> Danger Zone</h6>
-                <p class="small text-muted mb-3">Permanently delete organization workspace, member records, and all financial data.</p>
+                <p class="small text-muted mb-3">Permanently delete organization workspace, member records, and all user data.</p>
                 
-                <button type="button" class="btn btn-danger" onclick="showToast('ACCOUNT DELETED: Single click caused immediate irreversible data loss!', 'danger')">
-                  <i class="bi bi-trash-fill me-1"></i> Delete Account &amp; Wipe All Data (Instant)
-                </button>
+                <button type="button" class="btn btn-danger">Delete Account</button>
               </div>
 
               <div class="alert alert-danger py-2 small mb-0">
-                <i class="bi bi-radioactive me-1"></i> <strong>Usability Risk:</strong> A single accidental tap immediately destroys production data.
+                <i class="bi bi-radioactive me-1"></i> <strong>Usability Risk:</strong> A single accidental click immediately triggers data destruction without any confirmation modal or safeguard.
               </div>
             </div>
 
@@ -79,7 +77,7 @@ require_once __DIR__ . '/../includes/navbar.php';
 
           <div class="card-body d-flex flex-column">
             <p class="text-muted small mb-3">
-              Protected by a two-step confirmation dialog with intentional cognitive friction (requires typing <kbd>DELETE</kbd>) and an undoable state simulation.
+              Protected by a two-step confirmation dialog with intentional cognitive friction (requires typing <kbd>DELETE</kbd>) or modal safeguard.
             </p>
 
             <div class="sandbox-canvas mb-4 flex-grow-0">
@@ -94,12 +92,12 @@ require_once __DIR__ . '/../includes/navbar.php';
                 <p class="small text-muted mb-3">Permanently delete organization workspace with safeguards.</p>
                 
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
-                  <i class="bi bi-trash3 me-1"></i> Delete Account...
+                  <i class="bi bi-trash3 me-1"></i> Delete Account
                 </button>
               </div>
 
               <div class="alert alert-success py-2 small mb-0">
-                <i class="bi bi-check-circle-fill me-1"></i> <strong>Safe Architecture:</strong> Confirmation modal forces conscious confirmation before committing destruction.
+                <i class="bi bi-shield-check me-1"></i> <strong>Safe Guard:</strong> Opens a modal dialog with mandatory 2-step verification.
               </div>
             </div>
 
@@ -119,24 +117,29 @@ require_once __DIR__ . '/../includes/navbar.php';
   </div>
 </main>
 
-<!-- Two-Step Confirmation Modal -->
+<!-- REMEDIATED 2-STEP CONFIRMATION MODAL -->
 <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content border-danger">
+    <div class="modal-content">
       <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="delModalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i>Confirm Irreversible Deletion</h5>
+        <h5 class="modal-title h6" id="delModalLabel"><i class="bi bi-exclamation-triangle-fill me-2"></i>Confirm Irreversible Account Deletion</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p class="text-danger fw-medium mb-2">Warning: All workspaces, databases, and billing profiles will be permanently erased.</p>
-        <p class="small text-muted mb-2">To prevent accidental deletion, please type <strong class="text-dark">DELETE</strong> in the box below:</p>
-        <input type="text" id="confirmPhraseInput" class="form-control mb-2" placeholder="Type DELETE here">
-        <div class="form-text small">Button enables only when the confirmation keyword is typed exactly.</div>
+        <p class="text-danger fw-bold mb-2">Are you absolutely sure?</p>
+        <p class="small text-muted mb-3">
+          This action <strong>CANNOT</strong> be undone. This will permanently delete the account, active subscriptions, and remove all collaborator access.
+        </p>
+        
+        <div class="mb-3">
+          <label for="confirmText" class="form-label small fw-bold">Type <span class="badge bg-danger">DELETE</span> to confirm:</label>
+          <input type="text" id="confirmText" class="form-control" placeholder="DELETE" autocomplete="off">
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel &amp; Keep Account</button>
-        <button type="button" id="confirmDeleteSubmit" class="btn btn-danger" disabled>
-          <i class="bi bi-trash-fill me-1"></i> I Understand, Delete Everything
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger disabled" disabled onclick="showToast('Account successfully purged.', 'danger'); bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal')).hide();">
+          Permanently Delete
         </button>
       </div>
     </div>

@@ -272,18 +272,19 @@ $tests = [
         'severity_class' => 'danger',
         'citation' => 'NN/g Usability Heuristic #3: User Control and Freedom & W3C WAI-ARIA Modal Pattern: "Users often choose system functions by mistake and need a clearly marked emergency exit to leave the unwanted state without having to go through an extended dialogue."',
         'trigger_summary' => 'An active modal dialog (<code>[role="dialog"]</code> or <code>.modal</code>) that lacks a visible close button (<code>.btn-close</code>), disables backdrop clicking, and fails to handle the <code>Escape</code> keyboard event.',
-        'failing_snippet' => '<!-- FAILING: Modal trap - no close button, static backdrop, no Escape key listener -->
-<div class="modal show d-block" id="trappedModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+        'failing_snippet' => '<!-- FAILING: Modal rendered open in initial DOM with NO close button, no Esc dismiss -->
+<div class="modal show" style="display: block; position: relative; z-index: 1;">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">System Alert Dialog</h5>
-        <!-- Missing .btn-close -->
+    <div class="modal-content border-danger">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Trapped Modal (No Close Button)</h5>
       </div>
       <div class="modal-body">
-        <p>You cannot dismiss this modal via Escape or clicking outside.</p>
+        <p>No close button, no Escape key listener, and no dismiss attributes.</p>
       </div>
-      <!-- No cancel button in footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary disabled" disabled>Confirm</button>
+      </div>
     </div>
   </div>
 </div>',
@@ -292,7 +293,7 @@ $tests = [
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="accModalLabel">System Alert Dialog</h5>
+        <h5 class="modal-title" id="accModalLabel">Accessible Modal Dialog</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -311,16 +312,14 @@ $tests = [
         'slug' => 'destructive-unconfirmed',
         'file' => 'destructive-unconfirmed.php',
         'rule' => 'ux-destructive-unconfirmed',
-        'name' => 'Destructive Action Unconfirmed',
+        'name' => 'Destructive Action Safeguards',
         'pillar' => 'pillar-3',
         'severity' => 'Warning',
         'severity_class' => 'warning',
         'citation' => 'NN/g Usability Heuristic #5: Error Prevention: "Even better than good error messages is a careful design which prevents a problem from occurring in the first place... require user confirmation before committing irreversible actions."',
-        'trigger_summary' => 'A prominent button or form action labelled "Delete Account", "Purge All Data", or "Drop Database" that executes irreversible destruction immediately on single click with no confirmation dialog or two-step verification barrier.',
-        'failing_snippet' => '<!-- FAILING: Direct irreversible data purge on single click without prompt -->
-<button class="btn btn-danger btn-lg" onclick="immediateAccountPurge()">
-  <i class="bi bi-trash"></i> Delete Account &amp; Wipe All Records
-</button>',
+        'trigger_summary' => 'A prominent button or form action labelled "Delete Account", "Delete All", or "Purge All Data" that executes irreversible destruction immediately on single click with no confirmation dialog or two-step verification barrier.',
+        'failing_snippet' => '<!-- FAILING: Raw destructive button without confirmation safeguard or modal gate -->
+<button type="button" class="btn btn-danger">Delete Account</button>',
         'remediated_snippet' => '<!-- REMEDIATED: Safety barrier with confirmation modal, typed friction, and undo toast buffer -->
 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
   <i class="bi bi-trash"></i> Delete Account...

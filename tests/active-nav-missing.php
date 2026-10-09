@@ -29,27 +29,27 @@ require_once __DIR__ . '/../includes/navbar.php';
 
           <div class="card-body d-flex flex-column">
             <p class="text-muted small mb-3">
-              This navigation bar has 5+ menu items, but <strong>zero active state indicators</strong>. Neither visual CSS classes (<code>.active</code>) nor accessibility attributes (<code>aria-current="page"</code>) exist to tell users which page they are currently viewing.
+              This primary navigation bar contains 5 navigation links, but <strong>NONE of the links have <code>class="active"</code>, <code>class="current"</code>, or <code>aria-current="page"</code></strong>. Users and screen readers receive zero wayfinding feedback indicating which page is currently open.
             </p>
 
             <div class="sandbox-canvas mb-4 flex-grow-0">
               <div class="d-flex align-items-center justify-content-between mb-3">
                 <span class="fw-bold small text-secondary"><i class="bi bi-compass me-1"></i> Simulated Current Route: <code>/reports</code></span>
-                <span class="badge bg-danger-subtle text-danger">No "You Are Here" State</span>
+                <span class="badge bg-danger-subtle text-danger">No Active State</span>
               </div>
 
-              <!-- FAILING NAVBAR TRIGGER -->
+              <!-- FAILING NAVBAR TRIGGER (4+ links, none with active/current/aria-current) -->
               <div class="border rounded p-3 bg-white mb-3">
-                <div class="small text-muted mb-2 fw-bold text-uppercase">Failing Header Navigation:</div>
-                <nav class="navbar navbar-expand-md bg-light rounded border">
+                <div class="small text-muted mb-2 fw-bold text-uppercase">Failing Primary Navigation:</div>
+                <nav class="navbar navbar-expand-md bg-light rounded border px-3">
                   <div class="container-fluid">
-                    <span class="navbar-brand text-muted fs-6">EnterpriseApp</span>
+                    <span class="navbar-brand text-muted fs-6">Enterprise Portal</span>
                     <div class="navbar-nav flex-row gap-2">
-                      <a class="nav-link text-secondary px-2" href="#">Dashboard</a>
-                      <a class="nav-link text-secondary px-2" href="#">Reports</a>
-                      <a class="nav-link text-secondary px-2" href="#">Analytics</a>
-                      <a class="nav-link text-secondary px-2" href="#">Settings</a>
-                      <a class="nav-link text-secondary px-2" href="#">Billing</a>
+                      <a class="nav-link text-secondary px-2" href="/dashboard">Dashboard</a>
+                      <a class="nav-link text-secondary px-2" href="/reports">Reports</a>
+                      <a class="nav-link text-secondary px-2" href="/analytics">Analytics</a>
+                      <a class="nav-link text-secondary px-2" href="/settings">Settings</a>
+                      <a class="nav-link text-secondary px-2" href="/billing">Billing</a>
                     </div>
                   </div>
                 </nav>
@@ -86,7 +86,7 @@ require_once __DIR__ . '/../includes/navbar.php';
 
           <div class="card-body d-flex flex-column">
             <p class="text-muted small mb-3">
-              The active item is explicitly distinguished with <code>aria-current="page"</code>, high-contrast visual highlighting (pill / bold text), and clear visual hierarchy.
+              The active item is explicitly distinguished with <code>aria-current="page"</code>, high-contrast visual highlighting (<code>class="active"</code>), and clear visual hierarchy.
             </p>
 
             <div class="sandbox-canvas mb-4 flex-grow-0">
@@ -97,25 +97,23 @@ require_once __DIR__ . '/../includes/navbar.php';
 
               <!-- REMEDIATED NAVBAR -->
               <div class="border rounded p-3 bg-white mb-3">
-                <div class="small text-muted mb-2 fw-bold text-uppercase">Remediated Header Navigation:</div>
-                <nav class="navbar navbar-expand-md bg-light rounded border" aria-label="Simulated Primary Navigation">
+                <div class="small text-muted mb-2 fw-bold text-uppercase">Remediated Primary Navigation:</div>
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark rounded border px-3">
                   <div class="container-fluid">
-                    <span class="navbar-brand text-dark fw-bold fs-6">EnterpriseApp</span>
-                    <div class="navbar-nav flex-row gap-1">
-                      <a class="nav-link text-secondary px-2" href="#">Dashboard</a>
-                      <a class="nav-link active bg-primary text-white rounded px-3 fw-bold" href="#" aria-current="page">
-                        <i class="bi bi-check2 me-1"></i> Reports
-                      </a>
-                      <a class="nav-link text-secondary px-2" href="#">Analytics</a>
-                      <a class="nav-link text-secondary px-2" href="#">Settings</a>
-                      <a class="nav-link text-secondary px-2" href="#">Billing</a>
+                    <span class="navbar-brand fs-6">Enterprise Portal</span>
+                    <div class="navbar-nav flex-row gap-2">
+                      <a class="nav-link px-2" href="/dashboard">Dashboard</a>
+                      <a class="nav-link active px-2 bg-primary rounded text-white" aria-current="page" href="/reports">Reports</a>
+                      <a class="nav-link px-2" href="/analytics">Analytics</a>
+                      <a class="nav-link px-2" href="/settings">Settings</a>
+                      <a class="nav-link px-2" href="/billing">Billing</a>
                     </div>
                   </div>
                 </nav>
               </div>
 
               <div class="alert alert-success py-2 small mb-0">
-                <i class="bi bi-check-circle-fill me-1"></i> <strong>Clear Orientation:</strong> Screen readers announce "Reports, current page" and sighted users immediately spot the active blue pill.
+                <i class="bi bi-check-circle-fill me-1"></i> <strong>Accessible Wayfinding:</strong> Current location is announced to screen readers via <code>aria-current="page"</code> and clearly highlighted to sighted users.
               </div>
             </div>
 

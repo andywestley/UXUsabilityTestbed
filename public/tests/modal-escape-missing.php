@@ -29,30 +29,33 @@ require_once __DIR__ . '/../includes/navbar.php';
 
           <div class="card-body d-flex flex-column">
             <p class="text-muted small mb-3">
-              This modal dialog locks the user in: it has <strong>no top-right close button (<code>.btn-close</code>)</strong>, ignores outside backdrop clicks (<code>data-bs-backdrop="static"</code>), and disables the <kbd>Escape</kbd> key (<code>data-bs-keyboard="false"</code>).
+              This modal dialog is rendered open in the DOM without <strong>any close button (no <code>.btn-close</code>, no <code>.close</code>)</strong>, without <code>data-bs-dismiss="modal"</code>, and without <code>aria-label="close"</code>, violating NN/g Heuristic #3 (User Control &amp; Freedom).
             </p>
 
             <div class="sandbox-canvas mb-4 flex-grow-0">
               <div class="d-flex align-items-center justify-content-between mb-3">
-                <span class="fw-bold small text-secondary"><i class="bi bi-shield-slash text-danger me-1"></i> Trapped Modal Demo</span>
-                <span class="badge bg-danger-subtle text-danger">Escape Key Blocked</span>
+                <span class="fw-bold small text-secondary"><i class="bi bi-shield-slash text-danger me-1"></i> Trapped Modal (Initial DOM Load)</span>
+                <span class="badge bg-danger-subtle text-danger">No Close Mechanism</span>
               </div>
 
-              <div class="p-3 bg-white rounded border mb-3">
-                <p class="small text-muted mb-2">Click to open the trapped modal dialog and witness the lack of emergency dismiss mechanisms:</p>
-                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#trappedModalDemo">
-                  <i class="bi bi-box-arrow-up-right me-1"></i> Launch Trapped Modal
-                </button>
-              </div>
-
-              <!-- Static Representation within Sandbox -->
-              <div class="border border-danger rounded p-3 bg-light">
-                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom border-danger-subtle">
-                  <span class="fw-bold small text-danger"><i class="bi bi-lock-fill me-1"></i> Trapped Modal Header</span>
-                  <span class="badge bg-danger">No Close Button</span>
-                </div>
-                <div class="py-2 small text-muted">
-                  Users have no emergency escape vector.
+              <!-- FAILING OPEN MODAL DIRECTLY IN DOM -->
+              <div class="modal show" style="display: block; position: relative; z-index: 1;">
+                <div class="modal-dialog m-0">
+                  <div class="modal-content border-danger shadow-sm">
+                    <div class="modal-header bg-danger text-white">
+                      <h5 class="modal-title h6 mb-0"><i class="bi bi-lock-fill me-2"></i>Trapped Modal (No Close Button)</h5>
+                      <!-- Intentional omission of button.btn-close, button.close, data-bs-dismiss="modal", aria-label="close" -->
+                    </div>
+                    <div class="modal-body p-3">
+                      <p class="text-danger fw-bold small mb-1"><i class="bi bi-exclamation-triangle-fill me-1"></i> User Escape Blocked:</p>
+                      <p class="text-muted small mb-0">
+                        This modal renders in the DOM without any close button (<code>.btn-close</code>), ignores Escape key dismiss, and has no dismiss attributes.
+                      </p>
+                    </div>
+                    <div class="modal-footer p-2 bg-light">
+                      <button type="button" class="btn btn-sm btn-secondary disabled" disabled>Confirm Action</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -103,7 +106,7 @@ require_once __DIR__ . '/../includes/navbar.php';
               <div class="border border-success rounded p-3 bg-light">
                 <div class="d-flex justify-content-between align-items-center pb-2 border-bottom border-success-subtle">
                   <span class="fw-bold small text-success"><i class="bi bi-check-circle-fill me-1"></i> Accessible Modal Header</span>
-                  <button type="button" class="btn-close" disabled aria-label="Sample Close"></button>
+                  <button type="button" class="btn-close" disabled aria-label="Close"></button>
                 </div>
                 <div class="py-2 small text-muted">
                   Includes top close button, footer cancel button, and keyboard escape.
@@ -126,29 +129,6 @@ require_once __DIR__ . '/../includes/navbar.php';
     </div>
   </div>
 </main>
-
-<!-- FAILING TRAPPED MODAL (Interactive Demonstration) -->
-<div class="modal fade" id="trappedModalDemo" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="trappedLabel">
-  <div class="modal-dialog">
-    <div class="modal-content border-danger">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title" id="trappedLabel"><i class="bi bi-exclamation-octagon-fill me-2"></i>Trapped Modal (No Close Button)</h5>
-        <!-- Intentional omission of .btn-close -->
-      </div>
-      <div class="modal-body">
-        <p class="text-danger fw-bold mb-2"><i class="bi bi-lock-fill me-1"></i> Notice: You cannot press ESC or click the dark backdrop to close this!</p>
-        <p class="text-muted small">
-          This simulates a severe user freedom defect. To get out of this test sandbox modal, use the safety fallback button below.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">
-          Emergency Sandbox Dismiss (Test Helper)
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- REMEDIATED ACCESSIBLE MODAL -->
 <div class="modal fade" id="accessibleModalDemo" tabindex="-1" role="dialog" aria-labelledby="accLabel" aria-modal="true">

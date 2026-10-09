@@ -29,17 +29,20 @@ require_once __DIR__ . '/../includes/navbar.php';
 
           <div class="card-body d-flex flex-column">
             <p class="text-muted small mb-3">
-              This long-form view generates <strong>&gt; 3,800px</strong> of vertical content with a static header (disappears upon scrolling) and no floating or footer "Back to Top" button, forcing users into tedious manual thumb/mouse wheel scrolling.
+              A long-form document exceeding <strong>3,200px vertical height</strong> with a static header (scrolls out of view immediately) and <strong>NO floating or footer "Back to Top" button</strong>, forcing users into tedious manual scrolling.
             </p>
 
             <div class="sandbox-canvas mb-4 flex-grow-0">
               <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="fw-bold small text-secondary"><i class="bi bi-arrow-down-up me-1"></i> Scroll Fatigue Trigger State</span>
+                <span class="fw-bold small text-secondary"><i class="bi bi-arrow-down-up me-1"></i> Dedicated Long Page Failure</span>
                 <span class="badge bg-danger-subtle text-danger">No Escape Vectors</span>
               </div>
-              <p class="small text-muted mb-0">
-                Notice as you scroll down this long test page, there is no persistent access to navigation or quick return anchor in the un-remediated mode.
+              <p class="small text-muted mb-3">
+                Open the dedicated failing long page to benchmark the automated scanner against a 3,600px static document:
               </p>
+              <a href="../long-page.php" class="btn btn-danger btn-sm" target="_blank">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Open Dedicated Long Page (&gt; 3,200px)
+              </a>
             </div>
 
             <div class="mt-auto">
@@ -102,10 +105,10 @@ require_once __DIR__ . '/../includes/navbar.php';
     <div class="card border-0 shadow-sm p-4 bg-white mb-4">
       <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
         <div>
-          <h3 class="h5 fw-bold text-dark mb-0">Simulated Long-Form Documentation Corpus (3,800px Height)</h3>
+          <h3 class="h5 fw-bold text-dark mb-0">Remediated Long-Form Corpus with Floating Return Anchor</h3>
           <small class="text-muted">Demonstrates vertical scroll depth and validates the scroll escape mechanism.</small>
         </div>
-        <span class="badge bg-secondary">3,850px Total Scroll Height</span>
+        <span class="badge bg-success">3,850px Total Scroll Height</span>
       </div>
 
       <?php for ($chapter = 1; $chapter <= 10; $chapter++): ?>
@@ -115,7 +118,7 @@ require_once __DIR__ . '/../includes/navbar.php';
             <h4 class="h6 fw-bold mb-0">Usability Heuristics &amp; Information Architecture Specification &sect;<?= $chapter ?>.0</h4>
           </div>
           <p class="text-secondary leading-relaxed">
-            In human-computer interaction (HCI), long-form documents without wayfinding landmarks cause significant cognitive disorientation. When users scroll beyond two viewport heights (typically &gt; 2,000px), they lose visual context of their navigation roots. Without a persistent sticky header or an accessible floating escape mechanism, returning to the primary navigation requires continuous swipe or wheel gestures.
+            In human-computer interaction (HCI), long-form documents without wayfinding landmarks cause significant cognitive disorientation. When users scroll beyond two viewport heights (typically &gt; 2,000px), they lose visual context of their navigation roots.
           </p>
           <div class="p-3 bg-light rounded-3 mb-3 border">
             <h5 class="small fw-bold text-dark mb-1"><i class="bi bi-journal-code text-info me-1"></i> Architectural Principle <?= $chapter ?></h5>
@@ -123,9 +126,6 @@ require_once __DIR__ . '/../includes/navbar.php';
               Quantitative benchmarking by Baymard Institute demonstrates that providing sticky navigation and floating return controls reduces scroll fatigue by up to 42% on mobile devices and 28% on desktop displays.
             </p>
           </div>
-          <p class="text-secondary small">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
         </section>
       <?php endfor; ?>
 

@@ -31,6 +31,13 @@ $url->addChild('lastmod', $lastmod);
 $url->addChild('changefreq', 'monthly');
 $url->addChild('priority', '0.5');
 
+// Long Page scroll escape failure demo
+$url = $xml->addChild('url');
+$url->addChild('loc', $domain . '/long-page.php');
+$url->addChild('lastmod', $lastmod);
+$url->addChild('changefreq', 'monthly');
+$url->addChild('priority', '0.6');
+
 // All 11 dedicated test pages
 foreach ($tests as $slug => $test) {
     $url = $xml->addChild('url');
